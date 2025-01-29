@@ -35,7 +35,7 @@ A modern, web-based library management system powered by Google's Gemini AI that
 
 1. 📥 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/AI-Agent-Library-Management.git
+git clone https://github.com/Siddanagowda/AI-Agent-Library-Management.git
 cd AI-Agent-Library-Management
 ```
 
