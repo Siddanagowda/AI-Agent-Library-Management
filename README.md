@@ -1,101 +1,134 @@
 # 🤖 AI-Powered Library Management System
 
-A smart library management system that uses Natural Language Processing (NLP) to understand and process user requests for borrowing, returning, and checking the availability of books. 📚
+A modern, web-based library management system powered by Google's Gemini AI that helps manage books, borrowing, and returns with natural language processing capabilities. 📚
 
 ## ✨ Features
 
-- 🧠 Natural language understanding for user queries
-- 📊 Book availability checking
-- 📖 Book borrowing system
-- 🔄 Book return processing
-- 🎯 Intelligent intent recognition using spaCy NLP
+- 🔍 **Natural Language Search**: Ask for books in plain English
+- 📚 **Smart Book Management**: 
+  - 📊 Excel-based book database
+  - 🔄 Automatic book tracking
+  - 📍 Location management
+- 📖 **Borrowing System**:
+  - 📝 Track borrowed books
+  - ⏰ Automatic due date calculation
+  - 💰 Late return fine calculation ($1/day)
+- 🧠 **AI-Powered Assistance**:
+  - 💬 Natural language understanding
+  - 📋 Smart book recommendations
+  - 🎯 Context-aware responses
 
-## 🛠️ Requirements
+## 🛠️ Technology Stack
 
-- Python 3.x
-- spaCy
-- spaCy English language model (`en_core_web_sm`)
+- 🔙 **Backend**: Python, Flask
+- 🗄️ **Database**: SQLite, SQLAlchemy
+- 🎨 **Frontend**: HTML, JavaScript, Bootstrap
+- 🤖 **AI**: Google Gemini AI
+- 💾 **Data Storage**: Excel (openpyxl)
+
+## 📋 Prerequisites
+
+- 🐍 Python 3.8 or higher
+- 🔑 Google Gemini API key
 
 ## 🚀 Installation
 
-1. Install the required packages:
+1. 📥 Clone the repository:
 ```bash
-pip install spacy
-python -m spacy download en_core_web_sm
+git clone https://github.com/yourusername/AI-Agent-Library-Management.git
+cd AI-Agent-Library-Management
 ```
 
-2. Clone this repository or download the source code.
-
-## 💡 Usage
-
-The system can process natural language queries for the following operations:
-
-1. **Check Book Availability**
-   ```python
-   "Is '1984' available?" 
-   ```
-
-2. **Borrow a Book**
-   ```python
-   "Can I borrow '1984'?"
-   ```
-
-3. **Return a Book**
-   ```python
-   "I'd like to return '1984'."
-   ```
-
-## ⚙️ How it Works
-
-The system uses spaCy's NLP capabilities to:
-- Extract user intent (borrow, return, or check availability)
-- Identify book titles in natural language queries
-- Process requests and maintain book availability status
-
-## 🧩 AI Agent Capabilities
-
-The system is powered by an intelligent AI agent that enhances the library management experience:
-
-### 🗣️ Natural Language Understanding
-- Processes user queries in natural language format
-- Uses spaCy's advanced NLP model for intent recognition
-- Understands various ways of expressing the same request (e.g., "Can I borrow", "I want to take", "Let me have")
-
-### 🎯 Smart Intent Detection
-- Automatically identifies three main types of intents:
-  - 📋 Book availability checks
-  - 📤 Borrowing requests
-  - 📥 Return requests
-- Uses lemmatization to understand different word forms (e.g., "borrow", "borrowing", "borrowed")
-
-### 🔍 Entity Recognition
-- Identifies book titles within natural language queries
-- Uses both direct matching and spaCy's entity recognition for book title extraction
-- Handles cases where book titles might be mentioned in different formats
-
-### ⚡ Error Handling
-- Provides helpful feedback when requests are unclear
-- Prompts for missing information (e.g., when book title is not specified)
-- Maintains accurate tracking of book availability status
-
-## 💻 Example
-
-```python
-from app import AIAgentLibraryManagementSystem
-
-ai_agent_lms = AIAgentLibraryManagementSystem()
-response = ai_agent_lms.respond("Is '1984' available?")
-print(response)  # Output: '1984' is available.
+2. 📦 Install dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
-## 📚 Current Book Collection
+3. ⚙️ Set up environment variables:
+Create a `.env` file in the root directory:
+```
+GOOGLE_API_KEY=your_gemini_api_key_here
+```
 
-The system comes with a sample collection of books:
-- 1984
-- To Kill a Mockingbird
-- The Great Gatsby
-- Moby Dick
+4. 🗃️ Initialize the database:
+```bash
+python init_db.py
+```
+
+5. 🚀 Run the application:
+```bash
+python app.py
+```
+
+The application will be available at `http://localhost:5000` 🌐
+
+## 📖 Usage
+
+### 📚 Managing Books
+
+1. 📝 **Adding Books**:
+   - Update the `data/books.xlsx` file
+   - Run `python init_db.py` to update the database
+
+2. 🔍 **Searching Books**:
+   - Use natural language: "Find me programming books"
+   - Search by title: "Do you have Brief History of Time?"
+   - Search by author: "Books by Stephen Hawking"
+
+3. 📚 **Borrowing Books**:
+   - Click "Borrow" on any available book
+   - Fill in borrower details
+   - Note the due date (14 days from borrowing)
+
+4. 📬 **Returning Books**:
+   - Click "Return" on borrowed books
+   - Note the book's condition
+   - Pay any applicable late fees
+
+### 💰 Fine System
+
+- ⏰ Late returns incur a $1/day fine
+- 🧮 Fines are automatically calculated
+- 📊 Fine history is maintained in the system
+
+## 📁 Project Structure
+
+```
+AI-Agent-Library-Management/
+├── 🐍 app.py              # Main Flask application
+├── 📊 models.py           # Database models
+├── 🤖 ai_agent.py         # Gemini AI integration
+├── 🗃️ init_db.py          # Database initialization
+├── 📋 requirements.txt    # Python dependencies
+├── 📁 data/
+│   └── 📚 books.xlsx     # Book database
+└── 📁 templates/
+    └── 🎨 index.html     # Web interface
+```
+
+## 🔌 API Endpoints
+
+- 🏠 `GET /`: Home page
+- 💬 `POST /api/query`: Process natural language queries
+- 📚 `GET /api/books`: List all books
+- 📤 `POST /api/books/<book_id>/borrow`: Borrow a book
+- 📥 `POST /api/books/<book_id>/return`: Return a book
+- 📊 `GET /api/books/<book_id>/history`: Get book history
 
 ## 🤝 Contributing
 
-Feel free to submit issues, fork the repository, and create pull requests for any improvements.
+1. 🔀 Fork the repository
+2. 🌿 Create a feature branch
+3. ✍️ Commit your changes
+4. 🚀 Push to the branch
+5. 📬 Create a Pull Request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- 🤖 Google Gemini AI for natural language processing
+- 🌐 Flask team for the web framework
+- 🎨 Bootstrap team for the UI components
